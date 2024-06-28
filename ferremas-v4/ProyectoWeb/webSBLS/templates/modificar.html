@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock css %}
+{% block contenido %}
+        <!-- Trabajos -->
+        <section id="formulario" class="textos-header" style="text-align: center;">
+            <h2 class="titulo">Modificador de Trabajos</h2>
+            <h3 class="subtitulo">Complete todos los campos presentados a continuacion para poder modificar un trabajo</h3>            
+        </section>
+        <!-- formulario -->
+        <div style="text-align: center;font-size: xx-large; color: lime;">
+            {{mensaje}}
+        </div>   
+        <section id="formulario">            
+            <form action="{% url 'ADMT' %}" method="post" enctype="multipart/form-data" >
+                 {% csrf_token %}
+                 <br>
+                <h1 class="" style="color: white; font-size: 30px;">Modificador De Trabajos / usuario: {{user.username}}/ Trabajo ID.{{trabajo.idTrabajo}}</h1>
+                <h1 style="color: red; text-align: center; border: solid 3px white;"> {{user.first_name}} {{user.last_name}}</h1>
+                <br>
+                
+                <div class="formulario_contacto" style="color: white;">    
+                    
+                    
+                    <input class="col-g" type="hidden" style="color: white; background-color: black;" name="txtId" id="txtId" value="{{trabajo.idTrabajo}}">                
+                    <br>
+                    <label for="nombre">Nombre del producto : </label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese nombre del trabajo" class="col-p" name="txtNombre" id="txtNombre" value="{{trabajo.nombreTrabajo}}">
+                    <br>
+                    <label for="nombre">Nombre del usuario:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese nombre del mecanico" class="col-p" name="txtNombrem" id="txtNombrem" value="{{trabajo.mecanico}}">                    
+                    <br>
+                    <label for="nombre">Marca:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Marca" class="col-p" name="txtMarca" id="txtMarca" value="{{trabajo.marcav}}">
+                    <br>
+                    <label for="nombre">Modelo:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Modelo" class="col-p" name="txtModelo" id="txtModelo" value="{{trabajo.modelov}}"> 
+                    <br>
+                    <label for="nombre">Año:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Año" class="col-p" name="txtAnno" id="txtAnno" value="{{trabajo.annov}}">
+                    <br>
+                    <label for="nombre">Descripcion:</label>
+                    <br>
+                    <textarea style="color: white; background-color: black;" class="col-g" name="txtDesc" id="txtDesc" cols="30" rows="10">                
+                    {{trabajo.descripcion}}
+                    </textarea>
+                    <br>
+                    Imagen: <a href="{{trabajo.foto.url}}">{{trabajo.foto.url}}</a>
+                    <input class="col-g" type="file" name="txtImg" id="txtImg" style="color: white; background-color: black;">
+                    <br>
+                    <select class="col-g" name="cboCategoria" id="cboCategoria" style="color: white; background-color: black;">
+                        {% for item in categorias %}
+                            <option value="{{item.nombre}}">{{item.nombre}}</option>
+                        {% endfor %}                        
+                    </select>
+                    <input type="submit" class="col-p" value="Modificar">
+                    <input type="reset" class="col-p" value="Limpiar">
+                    
+                    
+                </div>
+            </form>
+        </section>
+        
+{% endblock contenido %}        
+  
+  {% block js %}
+  <script src="{% static 'js/validaciones.js' %}"></script>
+  {% endblock js %}

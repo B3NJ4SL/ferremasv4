@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Inicio</title>
+      <link rel="shortcut icon" href="{% static 'img/auto_logo.png' %}" type="image/x-icon">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+      {% block css %}
+          
+      <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      {% endblock css %}
+  </head>
+  <body>
+      <header>
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg text-bg-danger">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'IND' %}">FERREMAS</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Categorias
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'GALE' %}">Carpinteria</a></li>
+                      <li><a class="dropdown-item" href="{% url 'GALE' %}">Jardineria</a></li>
+                      <li><a class="dropdown-item" href="{% url 'GALE' %}">Soldadoras</a></li>
+                      <li><a class="dropdown-item" href="{% url 'GALE' %}">Industrial</a></li>
+                      <li><a class="dropdown-item" href="{% url 'GALE' %}">Taller</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'CONTA' %}">Soporte</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 350px;" action="{% url 'BUSC_NOM' %}" method="post">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="text" placeholder="¡Hola! ¿Que estas buscando?" aria-label="Search" name="txtTrabajo" id="txtTrabajo">
+                </form>
+                <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+                 <li>
+                  {% if user.is_authenticated %}
+                  <a class="text-dark dropdown-item" href="{% url 'ADMT' %}" style="text-decoration: none;">Administración</a>
+                  <a class="text-dark dropdown-item" href="{% url 'CERR' %}" style="text-decoration: none;">Cerrar sesión</a>
+                  <a class="text-dark dropdown-item" href="">Bienvenido : {{user.first_name}} {{user.last_name}}</a>
+                  
+                  {% else %}
+                  <li><a class="text-dark me-2" href="{% url 'LOGIN' %}" style="text-decoration: none;">Iniciar sesión</a></li>
+                  <li><a class="text-dark dropdown-item" href="{% url 'REGCOL' %}" style="text-decoration: none;">Registrarse</a></li>
+                  {% endif %}
+                 </li>  
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                 <a class="text-dark dropdown-item" href="{% url 'CARR' %}" style="text-decoration: none;">
+                    Mi Carrito
+                 </a>   
+                </ul>
+              </div>
+            </div>
+          </nav>
+      </header>
+      
+<main class="container mt-5 text-bg-light">
+    <h2 class="titulo text-dark">Productos</h2>
+    <p class="subtitulo text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, quas eius consequatur 
+        maiores ratione, tenetur corrupti consequuntur odio vero commodi illo a aperiam. Sequi mollitia 
+        praesentium modi distinctio ullam maiores!
+    </p>            
+    <!--blog trabajos realizados-->
+    <section id="blog">
+        <br>
+        <form style="text-align: center;" action="{% url 'BUSC_NOM' %}" method="post">
+            {% csrf_token %}
+            <h1 class="subtitulo text-dark">Buscar por nombre:</h1> 
+            <input type="text" name="txtTrabajo" id="txtTrabajo">
+            <input type="submit" value="Buscar">
+        </form>            
+        <form style="text-align: center;" action="{% url 'BUSC_PCLAV' %}" method="post">
+            {% csrf_token %}
+            <h1 class="subtitulo text-dark">Buscar por palabra clave:</h1> 
+            <input type="text" name="txtDesc" id="txtDesc">
+            <input type="submit" value="Buscar" class="mb-4">
+        </form>
+        <hr class="mb-5">
+        <h3 class="titulo text-dark">Lo ultimo En Articulos</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for item in trabajos %}                                
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{item.foto.url}}" class="card-img-top" alt="{{item.nombreTrabajo}}">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{item.nombreTrabajo}}</h5>
+                        <p class="card-text text-dark">{{item.descripcion}}</p>
+                    </div>
+                <a href="{% url 'DET_TRA' item.idTrabajo %}" class="btn btn-primary mb-2 mx-auto">Ver Detalle</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h2 style="text-align: center;color:  rgb(0, 0, 0); " class="mb-4 mt-4">Total de Productos: {{cantidad}}</h2>                        
+    </section>
+</main>
+      <!-- footer -->
+      <footer>
+        <div class="container-fluid">
+          <div class="row p-5">
+            <div class="col-xs-12 col-md-6 col-lg-3">
+              <p class="text-uppercase h5">Ferremas</p>
+              <hr class="mb-4">
+            </div>
+            <!-- Corporativo -->
+            <div class="col-xs-12 col-md-6 col-lg-3">
+              <p>CORPORATIVO</p>
+              <hr class="mb-4">
+              <div class="mb-2">
+               <a class="text-secondary text-decoration-none" href="">Quienes somos</a>
+              </div>
+              <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="">Transparencia Comercial</a>
+               </div>
+               <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="">Canal de integridad</a>
+               </div>
+               <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="">Ciclo Canal de integridad</a>
+               </div>
+               <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="">Portal de Credito Imperial</a>
+               </div>
+               <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="">Solicitud Datos Proveedores</a>
+               </div>
+            </div>
+            <!-- CATEGORIAS -->
+            <div class="col-xs-12 col-md-6 col-lg-3">
+              <p>CATEGORIAS</p>
+              <hr class="mb-4">
+              <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="{% url 'GALE' %}">Carpinteria</a>
+               </div>
+               <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="{% url 'GALE' %}">Jardineria</a>
+                </div>
+                <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="{% url 'GALE' %}">Soldadoras</a>
+                </div>
+                <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="{% url 'GALE' %}">Industrial</a>
+                </div>
+                <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="{% url 'GALE' %}">Taller</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-3">
+              <p>MI CUENTA</p>
+              <hr class="mb-4">
+              <div class="mb-2">
+                <a class="text-secondary text-decoration-none" href="">Mi Cuenta</a>
+               </div>
+               <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="">Registrate</a>
+                </div>
+                <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="">Cambio de Clave</a>
+                </div>
+                <div class="mb-2">
+                 <a class="text-secondary text-decoration-none" href="">Seguimiento de tu compra</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>

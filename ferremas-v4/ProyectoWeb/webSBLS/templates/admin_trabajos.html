@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock css %}
+{% block contenido %}
+        <!-- Trabajos -->
+        <section id="formulario" class="textos-header" style="text-align: center;">
+            <h2 class="titulo">Administrador de productos</h2>
+            <h3 class="subtitulo">Complete todos los campos presentados a continuacion para poder registrar un producto</h3>            
+        </section>
+        <!-- formulario -->
+        <div style="text-align: center;font-size: xx-large; color: lime;">
+            {{mensaje}}
+        </div>   
+        <section id="formulario">            
+            <form action="{% url 'ADMT' %}" method="post" enctype="multipart/form-data" >
+                 {% csrf_token %}
+                 <br>
+                <h1 class="" style="color: white; font-size: 30px;">Administrador De Productos / usuario: {{user.username}}</h1>
+                <h1 style="color: red; text-align: center; border: solid 3px white;"> {{user.first_name}} {{user.last_name}}</h1>
+                <br>
+                
+                <div class="formulario_contacto" style="color: white;">                    
+                    <br>
+                    <label for="nombre">Nombre del Producto : </label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese nombre del trabajo" class="col-p" name="txtNombre" id="txtNombre" required>
+                    <br>
+                    <label for="nombre">Nombre del usuario que ingresa:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese nombre del usuario" class="col-p" name="txtNombrem" id="txtNombrem" required>                    
+                    <br>
+                    <label for="nombre">Marca:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Marca" class="col-p" name="txtMarca" id="txtMarca" required>
+                    <br>
+                    <label for="nombre">Modelo:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Modelo" class="col-p" name="txtModelo" id="txtModelo" required>
+                    <br>
+                    <label for="nombre">Año:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Año" class="col-p" name="txtAnno" id="txtAnno" required>
+                    <br>
+                    <label for="nombre">Precio:</label>
+                    <br>
+                    <input type="text" style="color: white; background-color: black;" placeholder="ingrese Precio" class="col-p" name="txtPrec" id="txtPrec" required>
+                    <br>
+                    <label for="nombre">Descripcion:</label>
+                    <br>
+                    <textarea style="color: white; background-color: black;" class="col-g" name="txtDesc" id="txtDesc" cols="30" rows="10" required>                
+                    </textarea>
+                    <br>
+                    <input class="col-g" type="file" name="txtImg" id="txtImg" style="color: white; background-color: black;">
+                    <br>
+                    <select class="col-g" name="cboCategoria" id="cboCategoria" style="color: white; background-color: black;">
+                        {% for item in categorias %}
+                            <option value="{{item.nombre}}">{{item.nombre}}</option>
+                        {% endfor %}                        
+                    </select>
+                    <input type="submit" class="col-p" value="Enviar">
+                    <input type="reset" class="col-p" value="Limpiar">
+                    
+                </div>
+            </form>
+        </section>
+        <section>
+            <div>
+                <table style="color: white; border: solid 3px white ;text-align: center;width: 1000px;">
+                    <br>
+                    <tr style="border: solid 3px white;">
+                        <td style="border: solid 3px white;color: red;">Num</td>                        
+                        <td style="border: solid 3px white;color: red;">Nombre</td>                        
+                        <td style="border: solid 3px white;color: red;">Marca</td>
+                        <td style="border: solid 3px white;color: red;">Modelo</td>                       
+                        <td style="border: solid 3px white;color: red;">Foto</td>
+                        <td style="border: solid 3px white;color: red;">Publicado</td>
+                        <td style="border: solid 3px white;color: red;">Comentario</td>
+                        <td style="border: solid 3px white;color: red;">Precio</td>
+                        <td style="border: solid 3px white;color: red;">Administracion</td>
+                    </tr>
+                    {% for item in trabajos %}                   
+                    
+                    <tr style="border: solid 3px white; text-align: center;" >
+                        <td style="border: solid 3px white;">{{item.idTrabajo}}</td>
+                        <td style="border: solid 3px white;">{{item.nombreTrabajo}}</td>
+                        <td style="border: solid 3px white;">{{item.marcav}}</td>
+                        <td style="border: solid 3px white;">{{item.modelov}}</td>
+                        <td style="border: solid 3px white;">
+                            <img src="{{item.foto.url}}" style="height: 340px; width: 430px;"  />
+                        </td>
+                        <td style="border: solid 3px white;">{{item.publicado}}</td>
+                        <td style="border: solid 3px white; color: red;">{{item.comentario}}</td>
+                        <td style="border: solid 3px white;">{{item.preciv}}</td>   
+                        <td>
+                            <button onclick="modificar({{item.idTrabajo}})">Modificar</button>
+                            <button onclick="javascript:location.href='{% url 'ELIM' item.idTrabajo %}'">Eliminar</button>
+                            <input class="col-g" type="file" name="txtImg" id="txtImg" style="text-align: center; margin-left: 50px;">
+                        </td>                     
+                    </tr>
+                    {% endfor %}
+                </table>
+                <script>
+                    function modificar(id){
+                        location.href='/modificar/'+id+'/';
+                    }
+                </script>
+            </div>
+        </section>
+{% endblock contenido %}        
+  
+  {% block js %}
+  <script src="{% static 'js/validaciones.js' %}"></script>
+  {% endblock js %}

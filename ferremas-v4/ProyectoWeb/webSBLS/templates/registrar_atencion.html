@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar atenciones</title>
+    <link rel="shortcut icon" href="img/auto_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/estilosregistro.css">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'IND' %}">Inicio</a>
+            <a href="{% url 'GALE' %}">Productos</a>
+            <a href="{% url 'CONTA' %}">Formulario de contacto</a>            
+            <a href="{% url '' %}">Cerrar session</a>
+            
+        </nav>
+        <section class="textos-header">            
+            <h1>Registro de atenciones</h1>
+            
+        </section>
+        <div class="ola" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-1.41,0.52 C163.37,237.34 354.68,-94.22 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #000000;"></path></svg></div>
+        
+    </header>
+    <main>
+        <form action="" method="post" id="form">
+            <div class="form">
+                <h1 class="titulo">Registro de atenciones</h1>
+                <div class="grupo">
+                    <input type="text" placeholder="Tipo de trabajo" name="" id="tipoTrabajo" required><span class="barra"></span>
+                    <label for=""></label>
+                </div>
+                <div class="grupo">
+                    <input type="text" placeholder="Diagnostico" name="" id="diagnostico" required><span class="barra"></span>
+                    <label for=""></label>
+                </div>
+                <div class="grupo">
+                    <input type="text" placeholder="Usuarioreg" name="" id="Usuarioreg" required><span class="barra"></span>
+                    <label for=""></label>
+                </div>
+                <div class="grupo">
+                    <input type="text" placeholder="Materiales" name="" id="materiales" required><span class="barra"></span>
+                    <label for=""></label>
+                </div>
+                <div class="inputBTN" >
+                    <label for="archivo"><strong>Archivo:</strong></label>
+                    <input type="file" name="archivo" id="archivo">
+
+                </div>
+                <div class="buttons">
+                    <input type="submit" value="Registar Atencion">
+                    <input type="reset" value="Limpiar">
+                </div>
+                
+    
+            
+            
+        </form>
+        
+
+      
+              
+    </main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foot">
+                <h4>Telefono</h4>
+                <p>+56991706549</p>
+            </div>
+            <div class="content-foot">
+                <h4>E-mail</h4>
+                <p>123@kuchau.cl</p>
+            </div>
+            <div class="content-foot">
+                <h4>Direccion
+                </h4>
+                <p>Av. vicuña mackena 8631</p>
+            </div>
+            <h2 class="titu-final">&copy; Rayo Makween </h2>
+        </div>
+    </footer>
+    
+</body>
+</html>

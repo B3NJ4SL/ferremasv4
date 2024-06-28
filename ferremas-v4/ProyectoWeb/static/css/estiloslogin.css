@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css?family=Acme");
+@import url(info.css);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Acme';
+    
+}
+
+form{
+    display: flex; 
+    flex-direction: column;
+    background: #000000;
+    text-align: center;
+    padding: 20px 25px;
+    box-shadow: 0 5px 10px rgba(71,3,6,0.7);
+}
+
+form .titulo{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+form label{
+    margin-bottom: 2px;
+}
+
+form label .fa-solid{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    margin-right: 8px;
+}
+
+form label .fa-regular{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    margin-right: 9px;
+}
+
+form label input{
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616));
+    color: white;
+    padding: 5px;
+    margin: 3px;
+}
+header{
+    width: 100%;
+    height: 600px;
+    background: #780206;
+    /* fallback for old browsers */
+    background: -webkit-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616)),url(../img/lambo.jpg);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616)),url(../img/lambo.jpg); 
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.ola{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+header .textos-header{
+    display: flex;
+    height: 430px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.textos-header h1{
+    font-size: 50px;
+    color: #ffff;
+}
+.textos-header h2{
+    font-size: 30px;
+    font-weight: 300;
+    color: #ffff;
+}
+nav{
+    text-align: right;
+    padding: 30px 50px 0 0;
+    
+}
+
+nav > a{
+    color: #ffffff;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+form label input::placeholder{
+    color: #ffffff;
+}
+
+form button{
+    color:white;
+    border: none;
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616));
+}
+
+footer{
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.918), hsla(358, 97%, 24%, 0.925));
+    color: white;
+}

@@ -1,0 +1,17 @@
+#info{
+    background: black;
+    margin-top: 45px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+#info .contenedor img{
+    width: 180px;
+    height: 180px;border: solid 5px white;border-radius: 50%;
+}
+#info .contenedor{
+    display: flex;justify-content: center;flex-wrap: wrap;
+}
+#info .contenedor article{
+    margin: 30px;
+}

@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css?family=Acme");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Acme';
+    
+}
+form{
+    display: flex; 
+    flex-direction: column;
+    background: #000000;
+    text-align: center;
+    padding: 40px 0;
+        
+}
+
+form .titulo{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+form label{
+    margin-bottom: 2px;
+}
+header{
+    width: 100%;
+    height: 600px;
+    background: #780206;
+    /* fallback for old browsers */
+    background: -webkit-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616)),url(../img/lambo.jpg);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616)),url(../img/lambo.jpg); 
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.ola{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+header .textos-header{
+    display: flex;
+    height: 430px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.textos-header h1{
+    font-size: 50px;
+    color: #ffff;
+}
+.textos-header h2{
+    font-size: 30px;
+    font-weight: 300;
+    color: #ffff;
+}
+form button{
+    color:rgb(0, 0, 0);
+    border: none;
+    margin: 5px;
+    padding: 5px;
+}
+
+footer{
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.918), hsla(358, 97%, 24%, 0.925));
+    color: white;
+}
+
+
+nav{
+    text-align: right;
+    padding: 30px 50px 0 0;
+    
+}
+
+nav > a{
+    color: #ffffff;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+body{
+    height: 650px;
+    
+    justify-content: center;
+    align-items: center;
+
+    
+}
+form input{
+    
+    background: linear-gradient(to right, hsla(233, 88%, 20%, 0.63), hsla(358, 97%, 24%, 0.616));
+    color: white;
+    padding: 5px;
+    margin: 5px;
+    
+}
+
+form .inputBTN{
+    color: white;
+}
